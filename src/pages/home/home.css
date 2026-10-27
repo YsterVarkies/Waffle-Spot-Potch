@@ -255,7 +255,7 @@
 .prints-field { position: relative; height: 100svh; min-height: 660px; display: grid; place-items: center; }
 .prints-headline {
   position: relative;
-  z-index: 3;
+  z-index: 1;
   display: grid;
   justify-items: center;
   font-family: var(--font-display);
@@ -293,9 +293,9 @@
 .prints-note { position: absolute; z-index: 3; left: var(--margin); bottom: 28px; max-width: 46ch; }
 
 @media (max-width: 760px) {
-  .prints-field { height: 82svh; min-height: 560px; }
-  .prints-headline { font-size: 15.15vw; }
-  .prints-stack { width: 50vw; }
+  .prints-field { height: 82svh; min-height: 560px; align-content: start; padding-top: 12svh; }
+  .prints-headline { font-size: 24vw; }
+  .prints-stack { top: 60%; width: 42vw; }
   .prints-small { display: none; }
   .prints-note { right: var(--margin); bottom: 20px; }
 }
@@ -399,6 +399,6 @@
   .call { min-height: 0; row-gap: 56px; }
   .call-intro { grid-column: 1 / -1; }
   .call-number-wrap { padding-bottom: 0; }
-  .call-corners { flex-direction: column; align-items: flex-start; gap: 12px; }
-  .call-social { justify-content: flex-start; }
+  /* On a phone the address, hours and links repeat the footer right below, so this block is hidden to let the footer show. */
+  .call-corners { display: none; }
 }
