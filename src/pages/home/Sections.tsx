@@ -163,9 +163,6 @@ export function MenuIndex() {
         <figure className="mindex-photo" data-reveal>
           <Photo name="menu-covers" sizes="(max-width: 760px) 60vw, 22vw" />
         </figure>
-        <p className="mindex-label small soft" data-reveal>
-          Pages
-        </p>
         <table className="mindex-table" data-reveal>
           <caption className="sr-only">Sections of the menu, with how many items and the lowest price</caption>
           <tbody>

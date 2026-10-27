@@ -330,7 +330,7 @@
 .mindex-photo { grid-column: 1 / span 4; align-self: end; display: grid; gap: 10px; }
 .mindex-photo img { aspect-ratio: 4 / 5; }
 .mindex-label { grid-column: 7; padding-top: 14px; }
-.mindex-table { grid-column: 8 / span 5; width: 100%; }
+.mindex-table { grid-column: 7 / span 6; width: 100%; }
 .mindex-table th,
 .mindex-table td { padding: 13px 0; text-align: left; font-size: var(--step-body); font-weight: 400; vertical-align: baseline; }
 .mindex-table td { padding-left: 12px; }
