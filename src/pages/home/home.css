@@ -317,8 +317,9 @@
 .about-link { color: var(--ink); }
 
 @media (max-width: 760px) {
-  .about-facts { grid-column: 1 / -1; grid-row: 2; grid-template-columns: repeat(3, auto); gap: 14px; margin-top: 32px; font-size: 0.8125rem; }
-  .about-text { grid-column: 1 / -1; }
+  /* On a phone the address, hours and number are hidden here; they are in the footer. */
+  .about-facts { display: none; }
+  .about-text { grid-column: 1 / -1; gap: 2.2em; }
   .about-cap { width: 5em; height: 5em; }
 }
 

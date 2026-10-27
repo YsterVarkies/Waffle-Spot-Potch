@@ -17,8 +17,8 @@ export function Footer() {
     () => {
       const mm = gsap.matchMedia();
       mm.add(MOTION_OK, () => {
-        // Finishes as the footer's top reaches 70% of the screen, so its rows are fully visible well before the last pixel.
-        const scrollTrigger = { trigger: root.current, start: 'top bottom', end: 'top 70%', scrub: true };
+        // Starts late and only completes at the very bottom of the page, so the footer's rows rise slowly into view.
+        const scrollTrigger = { trigger: root.current, start: 'top 85%', end: 'bottom bottom', scrub: true };
         gsap.fromTo('.footer-inner', { yPercent: -32 }, { yPercent: 0, ease: 'none', scrollTrigger });
         gsap.fromTo(mark.current, { scale: 0.94 }, { scale: 1, ease: 'none', scrollTrigger });
       });
