@@ -295,7 +295,7 @@
 @media (max-width: 760px) {
   .prints-field { height: 82svh; min-height: 560px; align-content: start; padding-top: 12svh; }
   .prints-headline { font-size: 24vw; }
-  .prints-stack { top: 40%; width: 46vw; }
+  .prints-stack { top: 60%; width: 42vw; }
   .prints-small { display: none; }
   .prints-note { right: var(--margin); bottom: 20px; }
 }
