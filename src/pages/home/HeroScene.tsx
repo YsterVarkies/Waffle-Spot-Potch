@@ -32,7 +32,8 @@ export function HeroScene() {
       // Capped by screen height too, so two lines always fit above the bottom of the first screen.
       if (!natural || !available) return;
       const byWidth = (80 * available) / natural;
-      const byHeight = window.innerHeight * 0.2;
+      // room left under the copy and button for two lines of the name, plus the descender of the p
+      const byHeight = (window.innerHeight - 470) / 2;
       h1.style.setProperty('--mono', `${Math.min(byWidth, byHeight).toFixed(2)}px`);
     };
     fit();
