@@ -16,11 +16,11 @@ export function Footer() {
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
-      // The same scroll-linked rise on every screen size. It starts late and ends exactly at the bottom of the page
-      // ('max'), so the footer rows are always fully in place when you get there.
+      // The same scroll-linked rise on every screen size. It starts as soon as the footer appears and is done by the
+      // time its top reaches the middle of the screen, with a smaller travel so little is cut off on the way.
       mm.add(MOTION_OK, () => {
-        const scrollTrigger = { trigger: root.current, start: 'top 85%', end: 'max', scrub: true };
-        gsap.fromTo('.footer-inner', { yPercent: -32 }, { yPercent: 0, ease: 'none', scrollTrigger });
+        const scrollTrigger = { trigger: root.current, start: 'top bottom', end: 'top 45%', scrub: true };
+        gsap.fromTo('.footer-inner', { yPercent: -14 }, { yPercent: 0, ease: 'none', scrollTrigger });
         gsap.fromTo(mark.current, { scale: 0.94 }, { scale: 1, ease: 'none', scrollTrigger });
       });
     },
