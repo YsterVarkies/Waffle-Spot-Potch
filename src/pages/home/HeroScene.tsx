@@ -3,7 +3,6 @@ import { gsap, ScrollTrigger, useGSAP, MOTION_OK } from '@/lib/gsap';
 import { TLink } from '@/lib/transition';
 import { useOpenStatus } from '@/lib/hooks';
 import { site } from '@/data/site';
-import { Photo } from '@/components/Photo';
 import Magnet from '@/components/reactbits/Magnet';
 
 // The 3D waffle loads with its own chunk, so the rest of the home page doesn't wait for Three.js.
@@ -97,12 +96,6 @@ export function HeroScene() {
               <p className="soft">Every day, {site.hoursLabel}</p>
               <p className="soft">{site.street}</p>
             </div>
-          </div>
-        </div>
-
-        <div className="hero-window-phone-wrap wrap" aria-hidden="true">
-          <div className="hero-window-phone">
-            <Photo name="farmhouse" alt="" sizes="100vw" priority />
           </div>
         </div>
 

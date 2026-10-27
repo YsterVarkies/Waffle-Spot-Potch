@@ -116,7 +116,7 @@
   .hero-window-phone-wrap { display: block; flex: 1 1 auto; min-height: 120px; padding-block: 22px 46px; }
   .hero-window-phone { position: relative; height: 100%; overflow: hidden; background: var(--choc-3); }
   .hero-window-phone img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 42% 55%; }
-  .hero-mono { margin-top: 0; }
+  .hero-mono { margin-top: auto; }
 }
 
 /* ---------- Half or full: the 3D waffle ---------- */
@@ -330,10 +330,10 @@
 .mindex-photo { grid-column: 1 / span 4; align-self: end; display: grid; gap: 10px; }
 .mindex-photo img { aspect-ratio: 4 / 5; }
 .mindex-label { grid-column: 7; padding-top: 14px; }
-.mindex-table { grid-column: 7 / span 6; width: 100%; }
+.mindex-table { grid-column: 7 / span 6; width: max-content; max-width: 100%; justify-self: start; }
 .mindex-table th,
 .mindex-table td { padding: 13px 0; text-align: left; font-size: var(--step-body); font-weight: 400; vertical-align: baseline; }
-.mindex-table td { padding-left: 12px; }
+.mindex-table td { padding-left: 44px; }
 .mindex-table td.num { text-align: right; white-space: nowrap; }
 .mindex-table tr:nth-child(4n + 1):not(:first-child) > * { padding-top: 44px; }
 .mindex-table a {

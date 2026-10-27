@@ -16,27 +16,12 @@ export function Footer() {
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
-      // Desktop only: on a phone the footer is always fully visible, so its columns never sit off-screen.
-      mm.add(`${MOTION_OK} and (min-width: 761px)`, () => {
-        // Starts late and only completes at the very bottom of the page, so the footer's rows rise slowly into view.
-        const scrollTrigger = { trigger: root.current, start: 'top 85%', end: 'bottom bottom', scrub: true };
+      // The same scroll-linked rise on every screen size. It starts late and ends exactly at the bottom of the page
+      // ('max'), so the footer rows are always fully in place when you get there.
+      mm.add(MOTION_OK, () => {
+        const scrollTrigger = { trigger: root.current, start: 'top 85%', end: 'max', scrub: true };
         gsap.fromTo('.footer-inner', { yPercent: -32 }, { yPercent: 0, ease: 'none', scrollTrigger });
         gsap.fromTo(mark.current, { scale: 0.94 }, { scale: 1, ease: 'none', scrollTrigger });
-      });
-      // Phone: the same slide-up as desktop. It completes once the footer's bottom reaches 90% of the screen,
-      // which happens before the last pixel of the page, so the columns are always fully in place at the bottom.
-      mm.add(`${MOTION_OK} and (max-width: 760px)`, () => {
-        // A timed slide that plays once as the footer comes into view, so it always finishes, even at the very bottom.
-        gsap.fromTo(
-          '.footer-inner',
-          { yPercent: -32 },
-          {
-            yPercent: 0,
-            duration: 1.2,
-            ease: 'power3.out',
-            scrollTrigger: { trigger: root.current, start: 'top 85%', toggleActions: 'play none none none' },
-          },
-        );
       });
     },
     { scope: root },
