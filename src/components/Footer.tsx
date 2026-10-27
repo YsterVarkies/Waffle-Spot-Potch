@@ -16,7 +16,8 @@ export function Footer() {
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
-      mm.add(MOTION_OK, () => {
+      // Desktop only: on a phone the footer is always fully visible, so its columns never sit off-screen.
+      mm.add(`${MOTION_OK} and (min-width: 761px)`, () => {
         // Starts late and only completes at the very bottom of the page, so the footer's rows rise slowly into view.
         const scrollTrigger = { trigger: root.current, start: 'top 85%', end: 'bottom bottom', scrub: true };
         gsap.fromTo('.footer-inner', { yPercent: -32 }, { yPercent: 0, ease: 'none', scrollTrigger });

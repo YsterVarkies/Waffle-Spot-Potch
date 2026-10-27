@@ -293,7 +293,7 @@
 .prints-note { position: absolute; z-index: 3; left: var(--margin); bottom: 28px; max-width: 46ch; }
 
 @media (max-width: 760px) {
-  .prints-field { height: 82svh; min-height: 560px; align-content: start; padding-top: 12svh; }
+  .prints-field { height: 82svh; min-height: 560px; align-content: start; padding-top: 4svh; }
   .prints-headline { font-size: 24vw; }
   .prints-stack { top: 60%; width: 42vw; }
   .prints-small { display: none; }
@@ -397,7 +397,7 @@
 .call-social { display: flex; gap: 20px; flex-wrap: wrap; justify-content: flex-end; }
 
 @media (max-width: 760px) {
-  .call { min-height: 0; row-gap: 56px; }
+  .call { min-height: 0; row-gap: 20px; padding-block: 28px 20px; }
   .call-intro { grid-column: 1 / -1; }
   .call-number-wrap { padding-bottom: 0; }
   /* On a phone the address, hours and links repeat the footer right below, so this block is hidden to let the footer show. */
