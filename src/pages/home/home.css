@@ -49,10 +49,8 @@
   width: 0.98em;
   height: 0.71em;
   margin: 0 0.04em 0 0.035em;
-  border-radius: 50%;
-  overflow: hidden;
   vertical-align: baseline;
-  background: var(--choc-3);
+  /* no background and no clipping: the 3D waffle is the O */
 }
 .o-window img {
   position: absolute;

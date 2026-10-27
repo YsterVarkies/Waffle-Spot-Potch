@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { TLink } from '@/lib/transition';
 import { site } from '@/data/site';
-import { shakeNames } from '@/data/menu';
+import { menu, countItems, fromPrice, shakeNames } from '@/data/menu';
 import { Photo } from '@/components/Photo';
 import { FitText } from '@/components/FitText';
 import ScrollVelocity from '@/components/reactbits/ScrollVelocity';
@@ -163,6 +163,30 @@ export function MenuIndex() {
         <figure className="mindex-photo" data-reveal>
           <Photo name="menu-covers" sizes="(max-width: 760px) 60vw, 22vw" />
         </figure>
+        <p className="mindex-label small soft" data-reveal>
+          Pages
+        </p>
+        <table className="mindex-table" data-reveal>
+          <caption className="sr-only">Sections of the menu, with how many items and the lowest price</caption>
+          <tbody>
+            {menu.map(s => (
+              <tr key={s.id}>
+                <th scope="row">
+                  <TLink to={`/menu#${s.id}`}>
+                    {s.title}
+                    <span className="mindex-arrow" aria-hidden="true">
+                      →
+                    </span>
+                  </TLink>
+                </th>
+                <td className="soft">{countItems(s)} items</td>
+                <td className="num">
+                  {s.id === 'shakes' ? '' : 'from '}R{fromPrice(s)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </section>
   );

@@ -113,7 +113,10 @@ export function HeroScene() {
           defaults: { ease: 'none' },
           scrollTrigger: { trigger: el, start: 'top top', end: 'bottom bottom', scrub: 0.6, invalidateOnRefresh: true },
         });
-        tl.fromTo(layer, { clipPath: startClip }, { clipPath: 'inset(0px 0px 0px 0px round 0px)', duration: 0.62, ease: 'power2.inOut' }, 0)
+        // On desktop the photo layer is invisible at the top of the page (the round waffle stands alone in the O)
+        // and fades in under the waffle as the scroll starts.
+        tl.fromTo(layer, { autoAlpha: () => (window.matchMedia(PHONE).matches ? 1 : 0) }, { autoAlpha: 1, duration: 0.1 }, 0)
+          .fromTo(layer, { clipPath: startClip }, { clipPath: 'inset(0px 0px 0px 0px round 0px)', duration: 0.62, ease: 'power2.inOut' }, 0)
           .fromTo(
             layerImg,
             { x: () => startImg().x, y: () => startImg().y, scale: () => startImg().scale },

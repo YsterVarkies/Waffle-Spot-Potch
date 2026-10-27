@@ -46,7 +46,7 @@ export function noise2(x: number, y: number) {
 }
 
 /** Height of the top surface at local (x, z), centred on the piece. r = 1 on a wall, 0 in a pocket. */
-export function surfaceAt(s: WaffleSpec, x: number, z: number) {
+export function surfaceAt(s: WaffleSpec, x: number, z: number, rim = true) {
   const { width: W, depth: D } = waffleSize(s);
   const u = x + W / 2;
   const v = z + D / 2;
@@ -61,10 +61,89 @@ export function surfaceAt(s: WaffleSpec, x: number, z: number) {
   // pockets are slightly dished, walls slightly crowned
   const dish = (1 - r) * 0.012 * (Math.cos((gx % 1) * Math.PI * 2) + Math.cos((gz % 1) * Math.PI * 2));
   let y = s.base + s.depth * r - dish;
-  // the outer rim rolls over into the side
-  const edge = Math.min(u, W - u, v, D - v);
-  y *= 0.8 + 0.2 * smoothstep(0, s.wall * 0.75, edge);
+  // the outer rim of a square piece rolls over into the side (a round piece does its own rim)
+  if (rim) {
+    const edge = Math.min(u, W - u, v, D - v);
+    y *= 0.8 + 0.2 * smoothstep(0, s.wall * 0.75, edge);
+  }
   return { y, r };
+}
+
+/** A round Belgian waffle: the same pocket grid, cut to a disc. */
+export const ROUND: WaffleSpec = { cols: 5, rows: 5, cell: 0.4, wall: 0.11, depth: 0.16, base: 0.14, seg: 16 };
+
+export function buildRoundWaffleGeometry(s: WaffleSpec = ROUND, seed = 3): THREE.BufferGeometry {
+  const R = waffleSize(s).width / 2;
+  const nr = 56;
+  const ns = 144;
+  const pos: number[] = [];
+  const col: number[] = [];
+  const idx: number[] = [];
+  const c = new THREE.Color();
+  const stride = ns + 1;
+
+  // Top surface in polar rings, so the edge is a true circle.
+  for (let i = 0; i <= nr; i++) {
+    const rad = (i / nr) * R;
+    for (let j = 0; j <= ns; j++) {
+      const th = (j / ns) * Math.PI * 2;
+      const x = Math.cos(th) * rad;
+      const z = Math.sin(th) * rad;
+      const { y, r } = surfaceAt(s, x, z, false);
+      const edge = smoothstep(0, s.wall * 0.9, R - rad);
+      // a solid raised rim all the way round, so the edge is a clean circle
+      const rim = smoothstep(R - s.wall * 1.7, R - s.wall * 0.7, rad);
+      const top = s.base + s.depth;
+      const n = noise2(x * 7 + seed * 13, z * 7) * 0.6 + noise2(x * 21, z * 21 + seed * 7) * 0.4;
+      pos.push(x, (y + (top - y) * rim) * (0.78 + 0.22 * edge) + (n - 0.5) * 0.008, z);
+      const toast = Math.min(1, Math.max(0, Math.max(r, rim) * 0.78 + (n - 0.5) * 0.45 + 0.08));
+      c.copy(POCKET).lerp(RIDGE, toast);
+      col.push(c.r, c.g, c.b);
+    }
+  }
+  for (let i = 0; i < nr; i++) {
+    for (let j = 0; j < ns; j++) {
+      const a = i * stride + j;
+      const b = a + 1;
+      const cc = a + stride;
+      const d = cc + 1;
+      idx.push(a, b, cc, b, d, cc);
+    }
+  }
+
+  // Side wall and underside.
+  const outer = nr * stride;
+  const sideStart = pos.length / 3;
+  for (let j = 0; j <= ns; j++) {
+    const k = (outer + j) * 3;
+    const x = pos[k];
+    const y = pos[k + 1];
+    const z = pos[k + 2];
+    pos.push(x, y, z);
+    col.push(SIDE.r, SIDE.g, SIDE.b);
+    pos.push(x * 0.985, 0, z * 0.985);
+    col.push(UNDER.r, UNDER.g, UNDER.b);
+  }
+  for (let j = 0; j < ns; j++) {
+    const t1 = sideStart + j * 2;
+    const b1 = t1 + 1;
+    const t2 = sideStart + (j + 1) * 2;
+    const b2 = t2 + 1;
+    idx.push(t1, t2, b1, b1, t2, b2);
+  }
+  const center = pos.length / 3;
+  pos.push(0, 0, 0);
+  col.push(UNDER.r, UNDER.g, UNDER.b);
+  for (let j = 0; j < ns; j++) {
+    idx.push(center, sideStart + j * 2 + 1, sideStart + (j + 1) * 2 + 1);
+  }
+
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+  g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
+  g.setIndex(idx);
+  g.computeVertexNormals();
+  return g;
 }
 
 /** The top of the walls, for resting toppings on. */
