@@ -22,7 +22,8 @@
   --mono: 16.2vw;
   position: relative;
   margin-top: auto;
-  padding: 0 var(--margin) clamp(14px, 2.4vh, 26px);
+  /* room below the baseline for the descender of the p in Spot (its size is in em, so it scales with the name) */
+  padding: 0 var(--margin) 0.3em;
   font-family: var(--font-display);
   font-weight: 500;
   font-size: var(--mono);
@@ -302,8 +303,8 @@
 
 /* ---------- About: statement with a picture for a drop cap ---------- */
 .about { padding-block: var(--section-gap); }
-.about-facts { grid-column: 1 / span 2; list-style: none; display: grid; gap: 10px; align-content: start; padding-top: 0.5em; }
-.about-text { grid-column: 3 / span 10; display: grid; gap: 1.1em; }
+.about-facts { display: none; grid-column: 1 / span 2; list-style: none; gap: 10px; align-content: start; padding-top: 0.5em; }
+.about-text { grid-column: 1 / span 10; display: grid; gap: 2.2em; }
 .about-p { font-size: var(--step-lead); line-height: 1.25; max-width: 58ch; }
 .about-p strong { font-weight: 600; }
 .about-cap {
@@ -325,8 +326,7 @@
 
 /* ---------- Menu index: statement heading, table pushed right ---------- */
 .mindex { padding-block: var(--section-gap); }
-.mindex-title { display: grid; line-height: 0.98; }
-.mindex-title span:first-child { padding-left: 3vw; }
+.mindex-title { display: grid; justify-items: center; text-align: center; line-height: 0.98; }
 .mindex-grid { margin-top: 96px; align-items: start; }
 .mindex-photo { grid-column: 1 / span 4; align-self: end; display: grid; gap: 10px; }
 .mindex-photo img { aspect-ratio: 4 / 5; }

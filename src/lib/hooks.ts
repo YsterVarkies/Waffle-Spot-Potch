@@ -55,7 +55,8 @@ export function useFitText(ref: RefObject<HTMLElement | null>, deps: unknown[] =
       const styles = getComputedStyle(parent);
       const available = parent.clientWidth - parseFloat(styles.paddingLeft) - parseFloat(styles.paddingRight);
       if (!natural || !available) return;
-      const size = Math.min(maxPx, (100 * available) / natural);
+      // also capped by screen height, so a big title never runs off the bottom of the first screen
+      const size = Math.min(maxPx, (100 * available) / natural, window.innerHeight * 0.2);
       el.style.fontSize = `${size.toFixed(2)}px`;
     };
     fit();

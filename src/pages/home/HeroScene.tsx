@@ -28,8 +28,12 @@ export function HeroScene() {
       h1.style.setProperty('--mono', '100px');
       const natural = line.scrollWidth;
       const available = h1.clientWidth - parseFloat(getComputedStyle(h1).paddingLeft) * 2;
-      // 0.8 leaves the name a little smaller than the full width, so it reads as friendlier, not shouting
-      if (natural && available) h1.style.setProperty('--mono', `${((80 * available) / natural).toFixed(2)}px`);
+      // 0.8 leaves the name a little smaller than the full width, so it reads as friendlier, not shouting.
+      // Capped by screen height too, so two lines always fit above the bottom of the first screen.
+      if (!natural || !available) return;
+      const byWidth = (80 * available) / natural;
+      const byHeight = window.innerHeight * 0.2;
+      h1.style.setProperty('--mono', `${Math.min(byWidth, byHeight).toFixed(2)}px`);
     };
     fit();
     const ro = new ResizeObserver(() => {
@@ -37,11 +41,15 @@ export function HeroScene() {
       ScrollTrigger.refresh();
     });
     ro.observe(h1);
+    window.addEventListener('resize', fit);
     document.fonts?.ready.then(() => {
       fit();
       ScrollTrigger.refresh();
     });
-    return () => ro.disconnect();
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', fit);
+    };
   }, []);
 
   useGSAP(
