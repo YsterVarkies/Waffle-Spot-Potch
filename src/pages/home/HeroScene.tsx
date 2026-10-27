@@ -1,10 +1,13 @@
-import { useLayoutEffect, useRef } from 'react';
+import { lazy, Suspense, useLayoutEffect, useRef } from 'react';
 import { gsap, ScrollTrigger, useGSAP, MOTION_OK } from '@/lib/gsap';
 import { TLink } from '@/lib/transition';
 import { useOpenStatus } from '@/lib/hooks';
 import { site } from '@/data/site';
 import { Photo } from '@/components/Photo';
 import Magnet from '@/components/reactbits/Magnet';
+
+// The 3D waffle loads with its own chunk, so the rest of the home page doesn't wait for Three.js.
+const OWaffle = lazy(() => import('@/three/OWaffle'));
 
 const PHONE = '(max-width: 760px)';
 
@@ -117,7 +120,7 @@ export function HeroScene() {
             { x: 0, y: 0, scale: 1, duration: 0.62, ease: 'power2.inOut' },
             0,
           )
-          .to(q('.hero-reveal .o-waffle'), { opacity: 0, duration: 0.4 }, 0)
+          .to(q('.o-window'), { autoAlpha: 0, duration: 0.25 }, 0)
           .to(q('.mono-line--waffle'), { yPercent: -45, scale: 0.94, autoAlpha: 0, duration: 0.42 }, 0)
           .to(q('.mono-sp, .mono-the'), { xPercent: -35, autoAlpha: 0, duration: 0.42 }, 0)
           .to(q('.mono-t'), { xPercent: 90, autoAlpha: 0, duration: 0.42 }, 0)
@@ -177,11 +180,11 @@ export function HeroScene() {
               <span className="mono-sp">Sp</span>
               <span className="o-window">
                 <span className="sr-only">o</span>
-                <Photo name="farmhouse" alt="" sizes="(max-width: 760px) 30vw, 22vw" priority />
-                {/* the O is a waffle: the photo under a waffle grid */}
-                <svg className="o-waffle" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                  <path d="M25 0V100M50 0V100M75 0V100M0 25H100M0 50H100M0 75H100" stroke="#fff7ef" strokeWidth="7" fill="none" />
-                </svg>
+                <span className="o-canvas">
+                  <Suspense fallback={null}>
+                    <OWaffle />
+                  </Suspense>
+                </span>
               </span>
               <span className="mono-t">t</span>
             </span>
@@ -191,10 +194,6 @@ export function HeroScene() {
         <div className="hero-reveal" aria-hidden="true">
           <div className="hero-reveal-inner">
             <Photo name="farmhouse" alt="" sizes="100vw" priority />
-            {/* the waffle grid rides with the photo out of the O, and fades as the photo opens */}
-            <svg className="o-waffle" viewBox="0 0 100 100" preserveAspectRatio="none">
-              <path d="M25 0V100M50 0V100M75 0V100M0 25H100M0 50H100M0 75H100" stroke="#fff7ef" strokeWidth="7" fill="none" />
-            </svg>
           </div>
         </div>
         <p className="hero-statement">
