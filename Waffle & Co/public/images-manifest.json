@@ -1,0 +1,376 @@
+{
+  "farmhouse": {
+    "ratio": 1.7738,
+    "sizes": [
+      {
+        "w": 1200,
+        "width": 1200,
+        "height": 677,
+        "kb": 171
+      },
+      {
+        "w": 2400,
+        "width": 2400,
+        "height": 1353,
+        "kb": 503
+      }
+    ]
+  },
+  "garden-path": {
+    "ratio": 1.5,
+    "sizes": [
+      {
+        "w": 900,
+        "width": 900,
+        "height": 600,
+        "kb": 119
+      },
+      {
+        "w": 1800,
+        "width": 1800,
+        "height": 1200,
+        "kb": 415
+      }
+    ]
+  },
+  "interior": {
+    "ratio": 2.0566,
+    "sizes": [
+      {
+        "w": 900,
+        "width": 900,
+        "height": 438,
+        "kb": 45
+      },
+      {
+        "w": 1800,
+        "width": 1800,
+        "height": 875,
+        "kb": 120
+      }
+    ]
+  },
+  "banana-almond": {
+    "ratio": 1.3333,
+    "sizes": [
+      {
+        "w": 800,
+        "width": 800,
+        "height": 600,
+        "kb": 33
+      },
+      {
+        "w": 1600,
+        "width": 1600,
+        "height": 1200,
+        "kb": 90
+      }
+    ]
+  },
+  "dark-chocolate": {
+    "ratio": 1.3333,
+    "sizes": [
+      {
+        "w": 800,
+        "width": 800,
+        "height": 600,
+        "kb": 40
+      },
+      {
+        "w": 1600,
+        "width": 1600,
+        "height": 1200,
+        "kb": 116
+      }
+    ]
+  },
+  "ice-cream-waffle": {
+    "ratio": 1.3333,
+    "sizes": [
+      {
+        "w": 800,
+        "width": 800,
+        "height": 600,
+        "kb": 50
+      },
+      {
+        "w": 1600,
+        "width": 1600,
+        "height": 1200,
+        "kb": 175
+      }
+    ]
+  },
+  "caramel-crumble": {
+    "ratio": 1.3333,
+    "sizes": [
+      {
+        "w": 800,
+        "width": 800,
+        "height": 600,
+        "kb": 59
+      },
+      {
+        "w": 1600,
+        "width": 1600,
+        "height": 1200,
+        "kb": 167
+      }
+    ]
+  },
+  "marshmallow": {
+    "ratio": 0.75,
+    "sizes": [
+      {
+        "w": 700,
+        "width": 700,
+        "height": 933,
+        "kb": 71
+      },
+      {
+        "w": 1400,
+        "width": 1400,
+        "height": 1867,
+        "kb": 195
+      }
+    ]
+  },
+  "oreo": {
+    "ratio": 0.75,
+    "sizes": [
+      {
+        "w": 700,
+        "width": 700,
+        "height": 933,
+        "kb": 63
+      },
+      {
+        "w": 1400,
+        "width": 1400,
+        "height": 1867,
+        "kb": 164
+      }
+    ]
+  },
+  "candy-floss": {
+    "ratio": 0.75,
+    "sizes": [
+      {
+        "w": 700,
+        "width": 700,
+        "height": 933,
+        "kb": 39
+      },
+      {
+        "w": 1400,
+        "width": 1400,
+        "height": 1867,
+        "kb": 99
+      }
+    ]
+  },
+  "berry-waffle": {
+    "ratio": 1.3158,
+    "sizes": [
+      {
+        "w": 800,
+        "width": 800,
+        "height": 608,
+        "kb": 76
+      },
+      {
+        "w": 1600,
+        "width": 1600,
+        "height": 1216,
+        "kb": 190
+      }
+    ]
+  },
+  "berry-ice-cream": {
+    "ratio": 1.3706,
+    "sizes": [
+      {
+        "w": 700,
+        "width": 700,
+        "height": 511,
+        "kb": 53
+      },
+      {
+        "w": 1060,
+        "width": 1060,
+        "height": 773,
+        "kb": 90
+      }
+    ]
+  },
+  "fried-chicken": {
+    "ratio": 1,
+    "sizes": [
+      {
+        "w": 700,
+        "width": 700,
+        "height": 700,
+        "kb": 41
+      },
+      {
+        "w": 1060,
+        "width": 1060,
+        "height": 1060,
+        "kb": 66
+      }
+    ]
+  },
+  "table-overhead": {
+    "ratio": 0.75,
+    "sizes": [
+      {
+        "w": 700,
+        "width": 700,
+        "height": 933,
+        "kb": 61
+      },
+      {
+        "w": 1400,
+        "width": 1400,
+        "height": 1867,
+        "kb": 159
+      }
+    ]
+  },
+  "churro-shake": {
+    "ratio": 0.75,
+    "sizes": [
+      {
+        "w": 700,
+        "width": 700,
+        "height": 933,
+        "kb": 27
+      },
+      {
+        "w": 1400,
+        "width": 1400,
+        "height": 1867,
+        "kb": 68
+      }
+    ]
+  },
+  "berry-shake": {
+    "ratio": 0.75,
+    "sizes": [
+      {
+        "w": 700,
+        "width": 700,
+        "height": 933,
+        "kb": 33
+      },
+      {
+        "w": 1400,
+        "width": 1400,
+        "height": 1867,
+        "kb": 85
+      }
+    ]
+  },
+  "choc-chip-shake": {
+    "ratio": 1,
+    "sizes": [
+      {
+        "w": 700,
+        "width": 700,
+        "height": 700,
+        "kb": 37
+      },
+      {
+        "w": 1060,
+        "width": 1060,
+        "height": 1060,
+        "kb": 62
+      }
+    ]
+  },
+  "mint-shake": {
+    "ratio": 0.5357,
+    "sizes": [
+      {
+        "w": 600,
+        "width": 600,
+        "height": 1120,
+        "kb": 23
+      },
+      {
+        "w": 1060,
+        "width": 1060,
+        "height": 1979,
+        "kb": 51
+      }
+    ]
+  },
+  "vanilla-shake": {
+    "ratio": 0.5357,
+    "sizes": [
+      {
+        "w": 600,
+        "width": 600,
+        "height": 1120,
+        "kb": 28
+      },
+      {
+        "w": 1060,
+        "width": 1060,
+        "height": 1979,
+        "kb": 63
+      }
+    ]
+  },
+  "cappuccino": {
+    "ratio": 0.75,
+    "sizes": [
+      {
+        "w": 700,
+        "width": 700,
+        "height": 933,
+        "kb": 26
+      },
+      {
+        "w": 1400,
+        "width": 1400,
+        "height": 1867,
+        "kb": 65
+      }
+    ]
+  },
+  "menu-covers": {
+    "ratio": 0.75,
+    "sizes": [
+      {
+        "w": 700,
+        "width": 700,
+        "height": 933,
+        "kb": 60
+      },
+      {
+        "w": 1400,
+        "width": 1400,
+        "height": 1867,
+        "kb": 171
+      }
+    ]
+  },
+  "chocolate-cream": {
+    "ratio": 1.7778,
+    "sizes": [
+      {
+        "w": 800,
+        "width": 800,
+        "height": 450,
+        "kb": 44
+      },
+      {
+        "w": 1600,
+        "width": 1600,
+        "height": 900,
+        "kb": 140
+      }
+    ]
+  }
+}
