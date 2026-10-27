@@ -23,6 +23,15 @@ export function Footer() {
         gsap.fromTo('.footer-inner', { yPercent: -32 }, { yPercent: 0, ease: 'none', scrollTrigger });
         gsap.fromTo(mark.current, { scale: 0.94 }, { scale: 1, ease: 'none', scrollTrigger });
       });
+      // Phone: no sliding, so the columns can never be cut off. The footer fades up as you scroll to it instead,
+      // and it is fully opaque by the time you reach the bottom.
+      mm.add(`${MOTION_OK} and (max-width: 760px)`, () => {
+        gsap.fromTo(
+          '.footer-inner',
+          { opacity: 0.2 },
+          { opacity: 1, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top 95%', end: 'bottom bottom', scrub: true } },
+        );
+      });
     },
     { scope: root },
   );

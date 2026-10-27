@@ -33,7 +33,10 @@ export function HeroScene() {
       if (!natural || !available) return;
       const byWidth = (80 * available) / natural;
       // room left under the copy and button for two lines of the name, plus the descender of the p
-      const byHeight = (window.innerHeight - 470) / 2;
+      // Phones keep the smaller size they already had; the taller size is for desktop only.
+      const byHeight = window.matchMedia('(min-width: 761px)').matches
+        ? (window.innerHeight - 470) / 2
+        : window.innerHeight * 0.2;
       h1.style.setProperty('--mono', `${Math.min(byWidth, byHeight).toFixed(2)}px`);
     };
     fit();
