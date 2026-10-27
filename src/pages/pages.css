@@ -33,6 +33,7 @@
 .menu-tabs {
   position: sticky;
   top: 0;
+  transition: top 0.45s var(--ease-out); /* same timing as the bar sliding in */
   z-index: 20;
   background: var(--cream);
   padding: 14px var(--margin);
@@ -237,3 +238,6 @@
   .visit-hours, .visit-where { grid-column: 1 / -1; }
   .visit-good-item { grid-template-columns: 1fr; gap: 4px; }
 }
+
+/* When the navbar slides back in on an upward scroll, the Jump to bar sits just beneath it. */
+html.header-shown .menu-tabs { top: var(--header-h, 70px); }

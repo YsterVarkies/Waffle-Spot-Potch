@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router';
 import { TLink } from '@/lib/transition';
 import { site } from '@/data/site';
@@ -34,6 +34,24 @@ export function Header() {
 
   useEffect(() => setOpen(false), [pathname]);
 
+  // Let other sticky things (the menu's Jump to bar) know when the bar is showing and how tall it is,
+  // so they can sit just beneath it instead of behind it.
+  const bar = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.toggle('header-shown', mode === 'shown');
+    return () => root.classList.remove('header-shown');
+  }, [mode]);
+  useEffect(() => {
+    const el = bar.current;
+    if (!el) return;
+    const set = () => document.documentElement.style.setProperty('--header-h', `${el.offsetHeight}px`);
+    set();
+    const ro = new ResizeObserver(set);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   useEffect(() => {
     document.documentElement.classList.toggle('nav-open', open);
     if (!open) return;
@@ -43,7 +61,7 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className={`site-header is-${open ? 'shown' : mode}${open ? ' is-open' : ''}`}>
+    <header ref={bar} className={`site-header is-${open ? 'shown' : mode}${open ? ' is-open' : ''}`}>
       <div className="site-header-bar">
         <TLink to="/" className="wordmark" aria-label="The Waffle Spot, home">
           The Waffle Spot
