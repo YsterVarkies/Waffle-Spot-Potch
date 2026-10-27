@@ -221,16 +221,16 @@ export function Proof() {
 export function CallSection() {
   const line = useRef<HTMLAnchorElement>(null);
   return (
-    <section className="call ground-gold" aria-labelledby="call-title">
+    <section className="call ground-gold" aria-labelledby="call-title" data-reveal-group>
       <div className="call-top grid">
-        <div className="call-intro">
+        <div className="call-intro" data-reveal>
           <h2 id="call-title" className="head">
             Call the Spot
           </h2>
           <p className="lead">Platters for a crowd, a gluten-free waffle, or just checking we’re open.</p>
         </div>
       </div>
-      <div className="call-number-wrap wrap">
+      <div className="call-number-wrap wrap" data-reveal>
         <a ref={line} className="call-number" href={site.phoneHref} aria-label={`Call ${site.phoneDisplay}`}>
           <FitText aria-hidden>{site.phoneDisplay}</FitText>
         </a>
