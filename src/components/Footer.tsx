@@ -23,13 +23,19 @@ export function Footer() {
         gsap.fromTo('.footer-inner', { yPercent: -32 }, { yPercent: 0, ease: 'none', scrollTrigger });
         gsap.fromTo(mark.current, { scale: 0.94 }, { scale: 1, ease: 'none', scrollTrigger });
       });
-      // Phone: no sliding, so the columns can never be cut off. The footer fades up as you scroll to it instead,
-      // and it is fully opaque by the time you reach the bottom.
+      // Phone: the same slide-up as desktop. It completes once the footer's bottom reaches 90% of the screen,
+      // which happens before the last pixel of the page, so the columns are always fully in place at the bottom.
       mm.add(`${MOTION_OK} and (max-width: 760px)`, () => {
+        // A timed slide that plays once as the footer comes into view, so it always finishes, even at the very bottom.
         gsap.fromTo(
           '.footer-inner',
-          { opacity: 0.2 },
-          { opacity: 1, ease: 'none', scrollTrigger: { trigger: root.current, start: 'top 95%', end: 'bottom bottom', scrub: true } },
+          { yPercent: -32 },
+          {
+            yPercent: 0,
+            duration: 1.2,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: root.current, start: 'top 85%', toggleActions: 'play none none none' },
+          },
         );
       });
     },

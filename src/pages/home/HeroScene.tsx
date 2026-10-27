@@ -64,7 +64,7 @@ export function HeroScene() {
         const q = gsap.utils.selector(el);
         const stage = q('.hero-stage')[0] as HTMLElement;
         const layer = q('.hero-reveal')[0] as HTMLElement;
-        const layerImg = q('.hero-reveal img')[0] as HTMLElement;
+        const layerImg = q('.hero-reveal-inner')[0] as HTMLElement;
         el.classList.add('is-live');
 
         const source = () =>
@@ -72,8 +72,9 @@ export function HeroScene() {
         const startClip = () => {
           const s = stage.getBoundingClientRect();
           const w = source().getBoundingClientRect();
-          const r = window.matchMedia(PHONE).matches ? 0 : w.height * 0.42;
-          return `inset(${w.top - s.top}px ${s.right - w.right}px ${s.bottom - w.bottom}px ${w.left - s.left}px round ${r}px)`;
+          // the O is round on desktop, so the window starts as that round shape and opens out from it
+          const r = window.matchMedia(PHONE).matches ? '0px' : '50%';
+          return `inset(${w.top - s.top}px ${s.right - w.right}px ${s.bottom - w.bottom}px ${w.left - s.left}px round ${r})`;
         };
         // The full-screen picture starts shrunk into the window, so the O shows the whole farmhouse,
         // then grows with the clip until it fills the screen.
@@ -116,6 +117,7 @@ export function HeroScene() {
             { x: 0, y: 0, scale: 1, duration: 0.62, ease: 'power2.inOut' },
             0,
           )
+          .to(q('.hero-reveal .o-waffle'), { opacity: 0, duration: 0.4 }, 0)
           .to(q('.mono-line--waffle'), { yPercent: -45, scale: 0.94, autoAlpha: 0, duration: 0.42 }, 0)
           .to(q('.mono-sp, .mono-the'), { xPercent: -35, autoAlpha: 0, duration: 0.42 }, 0)
           .to(q('.mono-t'), { xPercent: 90, autoAlpha: 0, duration: 0.42 }, 0)
@@ -176,6 +178,10 @@ export function HeroScene() {
               <span className="o-window">
                 <span className="sr-only">o</span>
                 <Photo name="farmhouse" alt="" sizes="(max-width: 760px) 30vw, 22vw" priority />
+                {/* the O is a waffle: the photo under a waffle grid */}
+                <svg className="o-waffle" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                  <path d="M25 0V100M50 0V100M75 0V100M0 25H100M0 50H100M0 75H100" stroke="#fff7ef" strokeWidth="7" fill="none" />
+                </svg>
               </span>
               <span className="mono-t">t</span>
             </span>
@@ -183,7 +189,13 @@ export function HeroScene() {
         </h1>
 
         <div className="hero-reveal" aria-hidden="true">
-          <Photo name="farmhouse" alt="" sizes="100vw" priority />
+          <div className="hero-reveal-inner">
+            <Photo name="farmhouse" alt="" sizes="100vw" priority />
+            {/* the waffle grid rides with the photo out of the O, and fades as the photo opens */}
+            <svg className="o-waffle" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <path d="M25 0V100M50 0V100M75 0V100M0 25H100M0 50H100M0 75H100" stroke="#fff7ef" strokeWidth="7" fill="none" />
+            </svg>
+          </div>
         </div>
         <p className="hero-statement">
           A thatched farmhouse, big old trees and a lawn for the kids. Open every day from nine to five.
