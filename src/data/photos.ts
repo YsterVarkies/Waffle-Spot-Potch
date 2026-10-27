@@ -37,4 +37,6 @@ export const photos = {
 
 export type PhotoName = keyof typeof photos;
 
-export const photoSrc = (name: PhotoName, size: 0 | 1 = 1) => `/images/${name}-${photos[name].sizes[size]}.webp`;
+// BASE_URL carries the site's subfolder (e.g. /Waffle-Spot-Potch/ on GitHub Pages), so images load from there.
+export const photoSrc = (name: PhotoName, size: 0 | 1 = 1) =>
+  `${import.meta.env.BASE_URL}images/${name}-${photos[name].sizes[size]}.webp`;

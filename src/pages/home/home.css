@@ -32,12 +32,11 @@
   color: var(--cream);
 }
 .mono-the {
-  position: absolute;
-  left: var(--margin);
-  top: -1.55em;
+  display: block;
   font-size: var(--step-lead);
   line-height: 1;
   letter-spacing: -0.01em;
+  margin-bottom: 0.25em;
 }
 .mono-line { display: block; white-space: nowrap; }
 .mono-inner { display: inline-block; }
@@ -74,12 +73,6 @@
 }
 .hero.is-armed .hero-reveal { visibility: visible; }
 .hero-reveal img { width: 100%; height: 100%; object-fit: cover; object-position: 42% 55%; transform-origin: 50% 50%; }
-@media (min-width: 761px) {
-  .hero.is-armed .o-window img { visibility: hidden; }
-}
-@media (max-width: 760px) {
-  .hero.is-armed .hero-window-phone img { visibility: hidden; }
-}
 
 .hero-statement { display: none; }
 .hero.is-live .hero-statement {
@@ -124,7 +117,6 @@
   .hero-window-phone { position: relative; height: 100%; overflow: hidden; background: var(--choc-3); }
   .hero-window-phone img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 42% 55%; }
   .hero-mono { margin-top: 0; }
-  .mono-the { top: -1.35em; }
 }
 
 /* ---------- Half or full: the 3D waffle ---------- */
